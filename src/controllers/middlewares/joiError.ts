@@ -3,19 +3,23 @@ import joi from 'joi';
 
 interface JoiError {
   details: [
-    { type: string },
+    { 
+      type: string,
+      message: string
+    },
   ],
   message: string
 }
 
 const joiError = (err: JoiError, req: Request, res: Response, next: NextFunction) => {
   if (!joi.isError(err)) return next(err); 
+  
+  console.log(err);
+  const { type, message } = err.details[0];
 
-  const errorType = err.details[0].type;
+  const statusCode = type === 'any.required' ? 400 : 422;
 
-  const statusCode = errorType === 'any.required' ? 400 : 422;
-
-  res.status(statusCode).json({ message: err.message });
+  res.status(statusCode).json({ message });
 };
 
 export default joiError;

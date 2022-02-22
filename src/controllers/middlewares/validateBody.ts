@@ -1,8 +1,8 @@
-import joi from 'joi';
+import { Schema } from 'joi';
 
-const validate = <T>(scheema: object, obj: T): (void | Error) => {
-  const { error } = joi.object(scheema).validate(obj);
+const validateBody = <T>(schema: Schema, body: T): (void | Error) => {
+  const { error } = schema.validate(body);
   if (error) throw error;
 };
 
-export default validate;
+export default validateBody;

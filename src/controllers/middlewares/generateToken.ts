@@ -7,7 +7,7 @@ const generateToken = (req: Request, res: Response, _next: NextFunction) => {
 
   const token = jwt.sign(newUser, 'secret');
 
-  res.status(StatusCode.OK).json({ token });
+  res.status(StatusCode.CREATED).json({ token });
 };
 
 export default generateToken;

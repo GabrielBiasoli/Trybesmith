@@ -5,10 +5,11 @@ import validate from './middlewares/validateBody';
 import { newUserScheema } from './scheemas/user';
 import { NewUser } from '../interfaces/User';
 
-export const create = rescue(async (req: Request, res: Response, next: NextFunction) => {
+export const create = rescue(async (req: Request, _res: Response, next: NextFunction) => {
   validate<NewUser>(newUserScheema, req.body);
 
-  await usersService.create(req.body);
+  const newUser = await usersService.create(req.body);
+  req.body.user = newUser;
 
   next();
 });

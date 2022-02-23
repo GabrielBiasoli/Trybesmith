@@ -3,9 +3,9 @@ import jwt from 'jsonwebtoken';
 import StatusCode from '../enums';
 
 const generateToken = (req: Request, res: Response, _next: NextFunction) => {
-  const { newUser } = req.body;
+  const { user } = req.body;
 
-  const token = jwt.sign(newUser, 'secret');
+  const token = jwt.sign(user, 'secret');
 
   res.status(StatusCode.CREATED).json({ token });
 };

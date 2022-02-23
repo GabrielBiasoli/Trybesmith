@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { NewUser, UserLogged, UserLogin } from '../interfaces/User';
+import { NewUser, UserLogin } from '../interfaces/User';
 import connection from './connection';
 
 export const create = async ({ username, classe, level, password }: NewUser) => {
@@ -20,15 +20,6 @@ export const login = async ({ username, password }: UserLogin) => {
     `SELECT id, username FROM Trybesmith.Users
      WHERE username = ? and password = ?`,
     [username, password],
-  );
-
-  return user;
-};
-
-export const validateUser = async ({ username, id }: UserLogged) => {
-  const [user] = await connection.execute<RowDataPacket[]>(
-    'SELECT * FROM Trybesmith.Users WHERE id = ? and username = ?',
-    [id, username],
   );
 
   return user;

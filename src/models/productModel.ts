@@ -10,7 +10,7 @@ const create = async ({ amount, name }: NewProduct) => {
   );
 
   return {
-    items: {
+    item: {
       id: newProd.insertId,
       name,
       amount,

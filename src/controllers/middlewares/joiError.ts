@@ -14,12 +14,14 @@ interface JoiError {
 const joiError = (err: JoiError, req: Request, res: Response, next: NextFunction) => {
   if (!joi.isError(err)) return next(err); 
   
-  console.log(err);
-  const { type, message } = err.details[0];
-
+  const { type } = err.details[0];
+  const { message } = err;
+  
+  console.log(type);
+  
   const statusCode = type === 'any.required' ? 400 : 422;
 
-  res.status(statusCode).json({ message });
+  res.status(statusCode).json({ error: `${message}` });
 };
 
 export default joiError;

@@ -7,7 +7,11 @@ const create = async ({ name, amount }: NewProduct) => {
   return newProd;
 };
 
-const getAll = async ({}) => {};
+const getAll = async () => {
+  const products = await productModel.getAll();
+
+  return products;
+};
 
 export {
   create,

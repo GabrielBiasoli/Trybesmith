@@ -1,12 +1,12 @@
 import express from 'express';
 import * as UserController from './controllers/userController';
+import * as ProductController from './controllers/productController';
+import * as OrderController from './controllers/orderController';
 import joiError from './controllers/middlewares/joiError';
 import domainError from './controllers/middlewares/domainError';
 import serverError from './controllers/middlewares/serverError';
 import generateToken from './controllers/middlewares/generateToken';
-import * as ProductController from './controllers/productController';
 import authenticateToken from './controllers/middlewares/authenticateToken';
-import * as OrderController from './controllers/orderController';
 
 const app = express();
 

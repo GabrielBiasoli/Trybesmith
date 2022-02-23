@@ -7,7 +7,7 @@ import * as orderService from '../services/orderService';
 import { NewRequest } from '../interfaces/User';
 import StatusCode from './enums';
 
-const create = rescue(async (req: NewRequest, res: Response, _next: NextFunction) => {
+export const create = rescue(async (req: NewRequest, res: Response, _next: NextFunction) => {
   validateBody<OrderProducts>(orderSchemas.newOrderSchema, req.body);
 
   const order = await orderService.create({ ...req.body, ...req.user });
@@ -15,6 +15,4 @@ const create = rescue(async (req: NewRequest, res: Response, _next: NextFunction
   res.status(StatusCode.CREATED).json(order);
 });
 
-export {
-  create,
-};
+export default create;

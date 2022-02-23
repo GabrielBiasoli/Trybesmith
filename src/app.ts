@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/users', UserController.create, generateToken);
-app.post('/login', )
+app.post('/login', UserController.login, generateToken);
 
 app.use(joiError);
 app.use(domainError);

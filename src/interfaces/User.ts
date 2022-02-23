@@ -11,3 +11,8 @@ export interface NewUser extends UserLogin{
 export interface CreatedUser extends NewUser {
   id: number,
 }
+
+export interface UserLogged {
+  username: string,
+  id: number,
+}

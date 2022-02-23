@@ -1,0 +1,1 @@
+export type OrderProducts = number[];

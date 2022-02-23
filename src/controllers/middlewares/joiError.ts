@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import joi from 'joi';
+import StatusCode from '../enums';
 
 interface JoiError {
   details: [
@@ -17,7 +18,8 @@ const joiError = (err: JoiError, req: Request, res: Response, next: NextFunction
   const { type } = err.details[0];
   const { message } = err;
     
-  const statusCode = type === 'any.required' ? 400 : 422;
+  const statusCode = type === 'any.required' ? StatusCode.BAD_REQUEST 
+    : StatusCode.UNPROCESSABLE_ENTITY;
 
   res.status(statusCode).json({ error: `${message}` });
 };

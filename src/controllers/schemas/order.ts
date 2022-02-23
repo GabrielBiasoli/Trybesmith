@@ -7,7 +7,8 @@ const orderProductsMessages = {
 };
 
 export const newOrderSchema = joi.object({
-  products: joi.array().min(1).items(joi.number()).messages(orderProductsMessages),
+  products: joi.array().min(1).items(joi.number()).required()
+    .messages(orderProductsMessages),
 });
 
 export default newOrderSchema;

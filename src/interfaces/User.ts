@@ -1,3 +1,5 @@
+import { Request } from 'express';
+
 export interface UserLogin {
   username: string,
   password: string
@@ -15,4 +17,8 @@ export interface CreatedUser extends NewUser {
 export interface UserLogged {
   username: string,
   id: number,
+}
+
+export interface NewRequest extends Request {
+  user: UserLogged
 }

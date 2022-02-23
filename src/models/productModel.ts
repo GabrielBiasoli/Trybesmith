@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { NewProduct } from '../interfaces/Product';
+import { NewProduct, ProductOrder } from '../interfaces/Product';
 import connection from './connection';
 
 const create = async ({ amount, name }: NewProduct) => {
@@ -26,7 +26,15 @@ const getAll = async () => {
   return products;
 };
 
+const update = async ({ productId, orderId }: ProductOrder) => {
+  await connection.execute(
+    'UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?',
+    [orderId, productId],
+  );
+};
+
 export {
   create,
   getAll,
+  update,
 };

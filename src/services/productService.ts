@@ -1,4 +1,4 @@
-import { NewProduct } from '../interfaces/Product';
+import { NewProduct, ProductOrder } from '../interfaces/Product';
 import * as productModel from '../models/productModel';
 
 const create = async ({ name, amount }: NewProduct) => {
@@ -14,7 +14,12 @@ const getAll = async () => {
   return products;
 };
 
+const update = async ({ productId, orderId }: ProductOrder) => {
+  await productModel.update({ productId, orderId });
+};
+
 export {
   create,
   getAll,
+  update,
 };

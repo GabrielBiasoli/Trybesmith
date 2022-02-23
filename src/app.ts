@@ -6,6 +6,7 @@ import serverError from './controllers/middlewares/serverError';
 import generateToken from './controllers/middlewares/generateToken';
 import * as ProductController from './controllers/productController';
 import authenticateToken from './controllers/middlewares/authenticateToken';
+import * as OrderController from './controllers/orderController';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.post('/users', UserController.create, generateToken);
 app.post('/login', UserController.login, generateToken);
 app.post('/products', authenticateToken, ProductController.create);
 app.get('/products', authenticateToken, ProductController.getAll);
+app.post('/orders', authenticateToken, OrderController.create);
 
 app.use(joiError);
 app.use(domainError);

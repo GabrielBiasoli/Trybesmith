@@ -16,9 +16,7 @@ const joiError = (err: JoiError, req: Request, res: Response, next: NextFunction
   
   const { type } = err.details[0];
   const { message } = err;
-  
-  console.log(type);
-  
+    
   const statusCode = type === 'any.required' ? 400 : 422;
 
   res.status(statusCode).json({ error: `${message}` });

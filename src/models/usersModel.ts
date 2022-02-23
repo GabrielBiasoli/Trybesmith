@@ -26,7 +26,7 @@ export const login = async ({ username, password }: UserLogin) => {
 };
 
 export const validateUser = async ({ username, id }: UserLogged) => {
-  const [[user]] = await connection.execute<RowDataPacket[]>(
+  const [user] = await connection.execute<RowDataPacket[]>(
     'SELECT * FROM Trybesmith.Users WHERE id = ? and username = ?',
     [id, username],
   );

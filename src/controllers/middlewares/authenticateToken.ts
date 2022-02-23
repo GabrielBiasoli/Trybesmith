@@ -18,10 +18,12 @@ const authenticateToken = rescue(async (req: Request, _res: Response, next: Next
   };
 
   const token = req.headers.authorization;
-  const { username, id }: UserLogged = await jwt.verify(token, 'secret', jwtConfig) as any;
 
-  const user = usersService.validateUser({ id, username });
-  if (!user) throw INVALID_TOKEN;
+  try {
+    await jwt.verify(token, 'secret', jwtConfig) as any;
+  } catch (error) {
+    throw INVALID_TOKEN;
+  }
 
   next();
 });

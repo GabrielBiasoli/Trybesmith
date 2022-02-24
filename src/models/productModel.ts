@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { NewProduct, ProductOrder } from '../interfaces/Product';
+import { NewProduct, ProductDTO, ProductOrder, ProductOrderId } from '../interfaces/Product';
 import connection from './connection';
 
 const create = async ({ amount, name }: NewProduct) => {
@@ -23,7 +23,7 @@ const getAll = async () => {
     'SELECT * FROM Trybesmith.Products',
   );
 
-  return products;
+  return products as ProductDTO[];
 };
 
 const update = async ({ productId, orderId }: ProductOrder) => {
@@ -33,9 +33,9 @@ const update = async ({ productId, orderId }: ProductOrder) => {
   );
 };
 
-const toProductId = (products: RowDataPacket[]) => {
+const toProductId = (products: ProductDTO[]) => {
   const productsFormated = products
-    .reduce((acc: number[], curr: RowDataPacket) => [...acc, curr.id], []);
+    .reduce((acc: number[], curr: ProductDTO) => [...acc, curr.id], []);
   return productsFormated;
 }; 
 
@@ -45,7 +45,7 @@ const getByOrderId = async (orderId: string) => {
     [orderId],
   );
 
-  return toProductId(products);
+  return toProductId(products as ProductDTO[]);
 };
 
 const groupAllOrderIds = async () => {
@@ -53,7 +53,7 @@ const groupAllOrderIds = async () => {
     'SELECT orderId FROM Trybesmith.Products GROUP BY orderId',
   );
 
-  return ordersIds;
+  return ordersIds as ProductOrderId[];
 };
 
 export {

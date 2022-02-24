@@ -1,4 +1,4 @@
-import { Order, OrderProducts } from '../interfaces/Order';
+import { Order, OrderProducts, OrderWithProducts } from '../interfaces/Order';
 import * as productService from './productService';
 import * as orderModel from '../models/orderModel';
 
@@ -29,7 +29,7 @@ export const getById = async (id: string) => {
   const products = await productService.getByOrderId(id);
   
   order.products = products;
-  return order;
+  return order as OrderWithProducts;
 };
 
 export const getAll = async () => {

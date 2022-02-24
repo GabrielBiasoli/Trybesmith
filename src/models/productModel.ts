@@ -33,8 +33,28 @@ const update = async ({ productId, orderId }: ProductOrder) => {
   );
 };
 
+// interface ProductId {
+//   id: number,
+// }
+
+const toProductId = (products: RowDataPacket[]) => {
+  const productsFormated = products
+    .reduce((acc: number[], curr: RowDataPacket) => [...acc, curr.id], []);
+  return productsFormated;
+}; 
+
+const getByOrderId = async (orderId: string) => {
+  const [products] = await connection.execute<RowDataPacket[]>(
+    'SELECT id FROM Trybesmith.Products WHERE orderId = ?',
+    [orderId],
+  );
+
+  return toProductId(products);
+};
+
 export {
   create,
   getAll,
   update,
+  getByOrderId,
 };

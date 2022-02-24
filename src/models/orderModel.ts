@@ -1,4 +1,4 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import connection from './connection';
 
 export const create = async ({ userId }: { userId: number }) => {
@@ -11,4 +11,12 @@ export const create = async ({ userId }: { userId: number }) => {
   return newOrder.insertId;
 };
 
-export default create;
+export const getById = async (id: string) => {
+  const [[order]] = await connection.execute<RowDataPacket[]>(
+    `SELECT * FROM Trybesmith.Orders
+      WHERE id = ?`,
+    [id],
+  ); 
+
+  return order;
+};

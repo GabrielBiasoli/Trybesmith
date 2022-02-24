@@ -17,8 +17,15 @@ const update = async ({ productId, orderId }: ProductOrder) => {
   await productModel.update({ productId, orderId });
 };
 
+const getByOrderId = async (orderId: string) => {
+  const products = await productModel.getByOrderId(orderId);
+
+  return products;
+};
+
 export {
   create,
   getAll,
   update,
+  getByOrderId,
 };

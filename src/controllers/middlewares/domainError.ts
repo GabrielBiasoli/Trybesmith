@@ -4,13 +4,15 @@ import StatusCode from '../enums';
 interface ErrorMap {
   INVALID_USER: [number, string]
   TOKEN_NOT_FOUND: [number, string],
-  INVALID_TOKEN: [number, string]
+  INVALID_TOKEN: [number, string],
+  ORDER_NOT_FOUND: [number, string],
 }
 
 const errorMap: ErrorMap = {
   INVALID_USER: [StatusCode.UNAUTHORIZED, 'Username or password invalid'],
   TOKEN_NOT_FOUND: [StatusCode.UNAUTHORIZED, 'Token not found'],
   INVALID_TOKEN: [StatusCode.UNAUTHORIZED, 'Invalid token'],
+  ORDER_NOT_FOUND: [StatusCode.NOT_FOUND, 'Order not found'],
 };
 
 const domainError = (err: Error, req: Request, res: Response, next: NextFunction) => {

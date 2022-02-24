@@ -17,6 +17,7 @@ app.post('/login', UserController.login, generateToken);
 app.post('/products', authenticateToken, ProductController.create);
 app.get('/products', authenticateToken, ProductController.getAll);
 app.post('/orders', authenticateToken, OrderController.create);
+app.get('/orders/:id', authenticateToken, OrderController.getById);
 
 app.use(joiError);
 app.use(domainError);

@@ -3,3 +3,8 @@ export interface OrderProducts {
   id: number,
   username: string
 }
+
+export interface Order {
+  id: string,
+  userId: string
+}

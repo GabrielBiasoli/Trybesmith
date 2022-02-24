@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { NewUser, UserLogin } from '../interfaces/User';
+import { NewUser, UserLogged, UserLogin } from '../interfaces/User';
 import connection from './connection';
 
 export const create = async ({ username, classe, level, password }: NewUser) => {
@@ -22,7 +22,7 @@ export const login = async ({ username, password }: UserLogin) => {
     [username, password],
   );
 
-  return user;
+  return user as UserLogged;
 };
 
 export default create;

@@ -1,4 +1,4 @@
-import { OrderProducts } from '../interfaces/Order';
+import { Order, OrderProducts } from '../interfaces/Order';
 import * as productService from './productService';
 import * as orderModel from '../models/orderModel';
 
@@ -31,5 +31,20 @@ export const getById = async (id: string) => {
   order.products = products;
   return order;
 };
+
+export const getAll = async () => {
+  const orders = await orderModel.getAll();
+
+  const prodIdsPromises = orders.reduce((acc: Promise<number[]>[], curr: Order) => {
+    const prodIdsPromise = productService.getByOrderId(curr.id); 
+    return [...acc, prodIdsPromise];
+  }, []);
+  
+  const newProdIds = await Promise.all(prodIdsPromises);
+  
+  const newOrders = orders.map((order, i) => ({ ...order, products: newProdIds[i] }));
+
+  return newOrders;
+}; 
 
 export default create;

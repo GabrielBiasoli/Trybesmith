@@ -23,4 +23,11 @@ export const getById = rescue(async (req: NewRequest, res: Response, _next: Next
   res.status(StatusCode.OK).json(order);
 });
 
+export const getAll = rescue(async (req: NewRequest, res: Response, _next: NextFunction) => {
+  const orders = await orderService.getAll();
+  console.log(orders);
+  
+  res.status(StatusCode.OK).json(orders);
+});
+
 export default create;

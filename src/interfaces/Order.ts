@@ -8,3 +8,7 @@ export interface Order {
   id: string,
   userId: string
 }
+
+export interface OrderWithProducts extends Order {
+  products: number[]
+}

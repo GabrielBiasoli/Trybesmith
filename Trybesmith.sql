@@ -23,3 +23,4 @@ CREATE TABLE Trybesmith.Products (
   FOREIGN KEY (orderId) REFERENCES Trybesmith.Orders (id)
 );
 
+SELECT orderId FROM Trybesmith.Products GROUP BY orderId;

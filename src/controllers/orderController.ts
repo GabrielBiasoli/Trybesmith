@@ -25,7 +25,6 @@ export const getById = rescue(async (req: NewRequest, res: Response, _next: Next
 
 export const getAll = rescue(async (req: NewRequest, res: Response, _next: NextFunction) => {
   const orders = await orderService.getAll();
-  console.log(orders);
   
   res.status(StatusCode.OK).json(orders);
 });

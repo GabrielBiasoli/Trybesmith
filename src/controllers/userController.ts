@@ -2,9 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import rescue from 'express-rescue';
 import * as usersService from '../services/userService';
 import validate from './middlewares/validateBody';
-import { newUserSchema, userLoginSchema } from './schemas/user';
+import { newUserSchema, userLoginSchema } from '../schemas/user';
 import { NewUser, UserLogin } from '../interfaces/User';
-import StatusCode from './enums';
+import StatusCode from '../enums';
 
 export const create = rescue(async (req: Request, _res: Response, next: NextFunction) => {
   validate<NewUser>(newUserSchema, req.body);

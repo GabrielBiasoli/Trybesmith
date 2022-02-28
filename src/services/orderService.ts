@@ -46,5 +46,3 @@ export const getAll = async () => {
 
   return newOrders;
 }; 
-
-export default create;

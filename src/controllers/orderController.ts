@@ -2,10 +2,10 @@ import { Response, NextFunction } from 'express';
 import rescue from 'express-rescue';
 import validateBody from './middlewares/validateBody';
 import * as orderService from '../services/orderService';
-import * as orderSchemas from './schemas/order';
+import * as orderSchemas from '../schemas/order';
 import { OrderProducts } from '../interfaces/Order';
 import { NewRequest } from '../interfaces/User';
-import StatusCode from './enums';
+import StatusCode from '../enums';
 
 export const create = rescue(async (req: NewRequest, res: Response, _next: NextFunction) => {
   validateBody<OrderProducts>(orderSchemas.newOrderSchema, req.body);

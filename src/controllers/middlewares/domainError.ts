@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import StatusCode from '../enums';
+import StatusCode from '../../enums';
 
 interface ErrorMap {
   INVALID_USER: [number, string]

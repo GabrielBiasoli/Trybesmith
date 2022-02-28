@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import joi from 'joi';
-import StatusCode from '../enums';
+import StatusCode from '../../enums';
 
 interface JoiError {
   details: [

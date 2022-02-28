@@ -24,5 +24,3 @@ export const login = async ({ username, password }: UserLogin) => {
 
   return user as UserLogged;
 };
-
-export default create;

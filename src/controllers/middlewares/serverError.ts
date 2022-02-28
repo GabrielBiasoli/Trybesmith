@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import StatusCode from '../enums';
+import StatusCode from '../../enums';
 
 const serverError = (err: Error, req: Request, res: Response, _next: NextFunction) => {
   console.log(err);

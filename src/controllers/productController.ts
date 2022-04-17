@@ -14,7 +14,7 @@ const create = rescue(async (req: Request, res: Response, _next: NextFunction) =
   res.status(StatusCode.CREATED).json(newProduct);
 });
 
-const getAll = rescue(async (req: Request, res: Response, _next: NextFunction) => {
+const getAll = rescue(async (_req: Request, res: Response, _next: NextFunction) => {
   const products = await productService.getAll();
   
   res.status(StatusCode.OK).json(products);

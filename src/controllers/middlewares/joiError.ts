@@ -12,7 +12,7 @@ interface JoiError {
   message: string
 }
 
-const joiError = (err: JoiError, req: Request, res: Response, next: NextFunction) => {
+const joiError = (err: JoiError, _req: Request, res: Response, next: NextFunction) => {
   if (!joi.isError(err)) return next(err); 
   
   const { type } = err.details[0];

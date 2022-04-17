@@ -23,7 +23,7 @@ export const getById = rescue(async (req: NewRequest, res: Response, _next: Next
   res.status(StatusCode.OK).json(order);
 });
 
-export const getAll = rescue(async (req: NewRequest, res: Response, _next: NextFunction) => {
+export const getAll = rescue(async (_req: NewRequest, res: Response, _next: NextFunction) => {
   const orders = await orderService.getAll();
   
   res.status(StatusCode.OK).json(orders);

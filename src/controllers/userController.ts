@@ -16,7 +16,7 @@ export const create = rescue(async (req: Request, _res: Response, next: NextFunc
   next();
 });
 
-export const login = rescue(async (req: Request, res: Response, next: NextFunction) => {
+export const login = rescue(async (req: Request, _res: Response, next: NextFunction) => {
   validate<UserLogin>(userLoginSchema, req.body);
 
   const user = await usersService.login(req.body);

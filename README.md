@@ -4,7 +4,7 @@ This project is a CRUD(Create, Read, Update, Delete) API made using _TypeScript_
 
 ## Used stacks
 
-**Language:** TypeScript.
+**Language:** TypeScript, MySQL.
 
 **Tools:** Node, Express, Joi, JWT.
 
